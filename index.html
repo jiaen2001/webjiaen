@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="./css/lightbox.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <style>
+        /* 基本樣式 */
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #a37a50;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 首頁樣式 */
+        #home {
+            height: 720px;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: auto;
+            margin: 0 auto;
+        }
+
+        .container-fluid a img {
+            width: 100px;
+        }
+
+        #home h1 {
+            font-size: 36px;
+            padding-top: 50px;
+        }
+
+        #home img {
+            width: 900px;
+        }
+
+        /* 關於我樣式 */
+        #about {
+            background-color: #ffd468;
+            padding: 40px;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image img {
+            max-width: 60%;
+            margin-left: 100px;
+        }
+
+        .about-info {
+            margin-left: 40px;
+            margin-right: 100px;
+        }
+
+        .about-info h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .about-info p {
+            font-size: 16px;
+        }
+
+        .about-info ul {
+            list-style-type: disc;
+        }
+
+        .about-info hr {
+            margin: 20px 0;
+        }
+
+        .skill-section {
+            background-color: #ffd468;
+            padding: 50px;
+        }
+
+        .skill-section h1 {
+            text-align: center;
+            color: #5d4222;
+            font-size: 24px;
+        }
+
+        .skill {
+            margin: 20px 0;
+        }
+
+        .skill h2 {
+            color: #5d4222;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .skill-bar {
+            background-color: #f0f0f0;
+            height: 20px;
+            margin-top: 10px;
+        }
+
+        .skill-level {
+            background-color: #b67f00;
+            height: 100%;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            border-radius: 5px;
+        }
+        #experience h1{
+            font-size: 24px;
+            margin: auto;
+            text-align: center;
+            color: #ffffff;
+        }
+        .timeLine {
+            margin: auto;
+        }
+
+        /* 經歷樣式 */
+        .timeLine a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            background-color: #fff;
+            display: block;
+            border: 1 px solid #aaa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .timeLine a:hover {
+            background-color: #aa6a16;
+            color: #fff;
+        }
+
+        .timeLine {
+            padding: 100px 0;
+        }
+
+        .timeLine li {
+            width: 50%;
+            padding: 20px 0;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        /* 奇數odd 偶數even */
+        .timeLine li:nth-child(odd) {
+            float: left;
+            padding-right: 100px;
+
+        }
+
+        .timeLine li:nth-child(even) {
+            float: right;
+            padding-left: 100px;
+            transform: translateY(50%);
+        }
+
+        .timeLine li:nth-child(odd)::after {
+
+            position: absolute;
+            content: '';
+            background-color: #855a46;
+            width: 2px;
+            height: 100%;
+            top: 0;
+            right: 0;
+            z-index: -1;
+            /*避免遮住線段上的圓點*/
+        }
+
+        /* 清除最後一個li的垂直線後半段 */
+        .timeLine li:last-child::after {
+            height: 50%;
+        }
+
+        .timeLine h2::after {
+            position: absolute;
+            content: '';
+            background-color: #fccfba;
+            width: 100px;
+            height: 2px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        /* 奇數水平線段貼齊右邊 */
+        .timeLine li:nth-child(odd) h2::after {
+            right: 0;
+
+        }
+
+        .timeLine li:nth-child(even) h2::after {
+            left: 0;
+
+        }
+
+        .timeLine li:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #533e3e;
+            z-index: 2;
+        }
+
+        .timeLine li:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeLine li:nth-child(even)::before {
+            left: -11px;
+            background-color: #fff;
+            border: 1px solid #3f3535;
+        }
+
+        /* 插畫、平面設計、網頁設計樣式 */
+        #illustration {
+            background-color: #f0f0f0;
+            padding: 40px 0;
+        }
+
+        #illustration h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #carousel {
+            margin: auto;
+        }
+
+        #carousel img {
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            vertical-align: bottom;
+        }
+
+        .illustration-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .illustration-item {
+            width: 200px;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .illustration-item img {
+            max-width: 100%;
+        }
+
+        .illustration-item p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        #graphic-design {
+            background-color: #feebce;
+            padding: 40px 0;
+            border-radius: 10px;
+        }
+
+        #graphic-design h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #graphic-design h4 {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .graphic-design-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .graphic-design-item {
+            width: 200px;
+            margin: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .graphic-design-item img {
+            max-width: 100%;
+        }
+
+        .graphic-design-item p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        #web-design {
+            background-color: #ffe6ca;
+            padding: 40px 0;
+        }
+
+        #web-design h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .web-design-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .web-design-item {
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .web-design-item a {
+            text-decoration: none;
+            display: block;
+        }
+
+
+
+        .web-design-video {
+            width: 100%;
+            height: 100%;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .wrapper {
+            width: 1080px;
+            height: 1080px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Courier New', Courier, monospace;
+            width: 960px;
+            margin: auto;
+        }
+
+
+
+        @keyframes fillBar {
+            0% {
+                width: 0;
+            }
+        }
+
+        /* 響應式設計 */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Footer樣式 */
+        footer {
+            background-color: #856a63;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .contact a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .contact a:hover {
+            color: #99ccff;
+        }
+
+        #fixedTop {
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            display: none;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#home">
+                <img src="./images/LOGO.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">關於我</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">經歷</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#illustration" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            作品集
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#illustration">插畫</a></li>
+                            <li><a class="dropdown-item" href="#graphic-design">平面設計</a></li>
+                            <li><a class="dropdown-item" href="#web-design">其他設計</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="home-content">
+            <div class="text">
+                <h1>JIAEN's 
+                    Portfolio</h1>
+                <img src="./images/水豚大的.JPG" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content container">
+            <div class="about-image">
+                <img src="./images/大頭.jpg" alt="劉佳恩">
+            </div>
+            <div class="about-info">
+                <h2>劉佳恩</h2>
+                <p>年齡：22歲，社會新鮮人</p>
+                <p>學歷：僑光科技大學生活創意設計系畢業</p>
+                <hr>
+                <h3>自我介紹：</h3>
+                <ul>
+                    <li>擁有豐富想像力與好奇心，期待著新的挑戰</li>
+                    <li>積極學習力求進步</li>
+                </ul>
+                <p>我是一名剛出社會的設計系畢業生，高中時餐飲科系的學習經驗，大學進入設計科系。儘管學習內容較基礎，但我努力參與設計展與擔任系學會攝影，並經營插畫IG帳號。熱愛創作，對行銷領域抱有濃厚興趣。現在，我期待能找到一份能充分發揮創意與設計技能的工作。
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="skill-section row">
+        <h1>技能</h1>
+        <div class="skill">
+            <h2>插畫</h2>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: 80%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <h2>平面設計</h2>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: 70%"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <h2>網頁設計</h2>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: 50%;"></div>
+            </div>
+        </div>
+    </section>
+    <div id="experience" class="wrapper row container">
+        <h1>經歷</h1>
+        <ul class="timeLine">
+            <li>
+                <a href="javascript:;">
+                    <h2>2020</h2>
+                    <p>僑光科技大學 生活創意設計系工讀生</p>
+                    <small>時間:3個月</small>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <h2>2020</h2>
+                    <p>僑光科技大學 生活創意設計系系學會攝影</p>
+                    <small>時間:1年</small>
+                </a>
+            </li>
+            <li>
+                <a href="javascript;:">
+                    <h2>2022</h2>
+                    <p>插畫委託接案</p>
+                    <small>至今</small>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <section id="illustration">
+        <h2>插畫</h2>
+        <div id="carousel">
+            <ul>
+                <li><a href="./images/插畫水豚.jpg" data-lightbox="group" data-title="PHOTO1">
+                        <img src="./images/插畫水豚.jpg" alt="">
+                    </a></li>
+                <li><a href="./images/水豚正方.jpg" data-lightbox="group" data-title="PHOTO2">
+                        <img src="./images/水豚正方.jpg" alt="">
+                    </a></li>
+                <li><a href="./images/虎年.jpg" data-lightbox="group" data-title="PHOTO3">
+                        <img src="./images/虎年.jpg" alt="">
+                    </a></li>
+                <li><a href="./images/棒棒糖貓.jpg" data-lightbox="group" data-title="PHOTO4">
+                        <img src="./images/棒棒糖貓.jpg" alt="">
+                    </a></li>
+                <li><a href="./images/五人.jpg" data-lightbox="group" data-title="PHOTO5">
+                        <img src="./images/五人.jpg" alt="">
+                    </a></li>
+            </ul>
+        </div>
+
+        <section id="graphic-design">
+            <h1>平面設計</h1>
+            <h4>海報設計</h4>
+            <div class="graphic-design-container">
+                <div class="graphic-design-item">
+                    <li><a href="./images/咖哩文宣_工作區域 1.jpg" data-lightbox="group" data-title="PHOTO6">
+                            <img src="./images/咖哩文宣_工作區域 1.jpg" alt=""></a></li>
+                    <p>咖哩文宣海報</p>
+                </div>
+                <div class="graphic-design-item">
+                    <li><a href="./images/甘霖.jpg" data-lightbox="group" data-title="PHOTO7">
+                            <img src="./images/甘霖.jpg" alt=""></a></li>
+                    <p>久旱逢甘霖</p>
+                </div>
+                <div class="graphic-design-item">
+                    <li><a href="./images/coffee_工作區域 1.png" data-lightbox="group" data-title="PHOTO8">
+                            <img src="./images/coffee_工作區域 1.png" alt=""></a></li>
+                    <p>咖啡海報</p>
+                </div>
+                <div class="graphic-design-item">
+                    <li><a href="./images/milktea_工作區域 1.png" data-lightbox="group" data-title="PHOTO9">
+                            <img src="./images/milktea_工作區域 1.png" alt=""></a></li>
+                    <p>奶茶海報</p>
+                </div>
+                <div class="graphic-design-item">
+                    <li><a href="./images/戶外用品展海報新-01.png" data-lightbox="group" data-title="PHOTO10">
+                            <img src="./images/戶外用品展海報新-01.png" alt=""></a></li>
+                    <p>戶外用品展2.5D海報</p>
+                </div>
+                <div class="graphic-design-item">
+                    <li><a href="./images/萬花筒_工作區域 1.png" data-lightbox="group" data-title="PHOTO11">
+                            <img src="./images/萬花筒_工作區域 1.png" alt=""></a></li>
+                    <p>萬花筒海報</p>
+                </div>
+            </div>
+            <h4>LOGO設計</h4>
+            <div class="graphic-design-container">
+                <div class="graphic-design-item">
+                    <li><a href="./images/浪愛不孤單.png" data-lightbox="group" data-title="PHOTO7">
+                            <img src="./images/浪愛不孤單.png" alt=""></a></li>
+                    <p>浪愛不孤單</p>
+                </div>
+                <div class="graphic-design-item">
+                    <li><a href="./images/ＬＯＧＯ圖.png" data-lightbox="group" data-title="PHOTO8">
+                            <img src="./images/ＬＯＧＯ圖.png" alt=""></a></li>
+                    <p>個人LOGO設計</p>
+                </div>
+                <div class="graphic-design-item">
+                    <li><a href="./images/牛排館_工作區域 1.png" data-lightbox="group" data-title="PHOTO9">
+                            <img src="./images/牛排館_工作區域 1.png" alt=""></a></li>
+                    <p>牛排館LOGO</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="web-design">
+            <h2>其他設計</h2>
+            <div class="web-design-container">
+                <div class="web-design-item">
+                    <a href="https://p982641383.wixsite.com/tripawty">
+                        <p>畢業專題網站</p>
+                        <a href="https://liujiaen20010218.mystrikingly.com/">
+                            <p>個人作品集網站</p>
+                    </a>
+                </div>
+                <div class="web-design-video">
+                    <p>畢業專題影片</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/14p0gQhbCVU?si=wxGeB0yRO2gH2dTk"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                        
+                </div>
+            </div>
+        </section>
+
+
+        <footer>
+            <div class="contact">
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/atun_studio" target="_blank">
+                        <img src="./images/instagram.svg" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+            <div class="contact">
+                <div class="social-icons">
+                    <a href="mailto:jack@kingyar.com">
+                        <img src="./images/envelope.svg" alt="mailto">
+                    </a>
+                </div>
+
+            </div>
+        </footer>
+        <script>window.addEventListener("scroll", function () {
+                const skillSection = document.querySelector(".skill-section");
+                const skillBars = document.querySelectorAll(".skill-bar .skill-level");
+
+                const sectionTop = skillSection.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (sectionTop < windowHeight) {
+                    skillBars.forEach((bar) => {
+                        bar.style.animation = "fillBar 2s forwards ease-in-out";
+                    });
+                }
+            });
+        </script>
+        <script src="./js/jquery-1.11.3.min.js"></script>
+        <script>
+            $(function () {
+                $('body').append('<a href="javascript:void(0);" id="fixedTop">TOP</a>');
+                // 載入、捲動、調整視窗大小
+                $(window).on('load scroll resize', function () {
+                    // 捲動高度超過100時出現
+                    // scrollTop()：取得頁面上方開始的捲動值
+                    if ($(window).scrollTop() > 100) {
+                        $('#fixedTop').fadeIn('normal');
+                    } else {
+                        $('#fixedTop').fadeOut('normal');
+                    }
+                });
+
+                $('#fixedTop').on('click', function () {
+                    // 捲動畫面到 scrollTop:'0' 位置
+                    $('html,body').animate({ scrollTop: '0' }, 500);
+                });
+            });
+        </script>
+        <script src="./js/jquery-1.11.3.min.js"></script>
+        <script src="./js/lightbox.min.js"></script>
+        <script src="./js/jquery-1.11.3.min.js"></script>
+        <!-- 旋轉木馬主程式 -->
+        <script src="./js/jquery.jcarousellite.min.js"></script>
+        <!-- 啟動旋轉木馬 -->
+        <script>
+            // 簡化寫法
+            $(function () {
+                $('#carousel').jCarouselLite({
+                    auto: 1000,  /*每多久時間(毫秒)輪播*/
+                    scroll: 3, /*每次捲動張數 (盡量不大於可見張數)預設1張*/
+                    visible: 2, //可見張數 預設3張
+                    speed: 1000//輪播速度(轉場時間)
+
+                });
+            });
+        </script>
+
+</body>
+
+</html>
